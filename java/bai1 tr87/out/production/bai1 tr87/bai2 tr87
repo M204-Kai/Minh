@@ -1,0 +1,61 @@
+import java.util.Scanner;
+
+class Clock {
+    int gio, phut, giay;
+
+    // Hàm dựng để khởi tạo Clock
+    public Clock(int gio, int phut, int giay) {
+        this.gio = gio;
+        this.phut = phut;
+        this.giay = giay;
+    }
+
+    // Hàm nhập giá trị
+    public void nhap() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Nhập giờ: ");
+        gio = scanner.nextInt();
+        System.out.print("Nhập phút: ");
+        phut = scanner.nextInt();
+        System.out.print("Nhập giây: ");
+        giay = scanner.nextInt();
+    }
+
+    // Hàm in giá trị
+    public void in() {
+        System.out.println(gio + ":" + phut + ":" + giay);
+    }
+
+    // Hàm làm tròn thời gian
+    public void lamTron() {
+        if (giay >= 60) {
+            phut += giay / 60;
+            giay = giay % 60;
+        }
+        if (phut >= 60) {
+            gio += phut / 60;
+            phut = phut % 60;
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Tạo 1 Clock có giá trị là 9:15:38 và in ra màn hình
+        Clock clockA = new Clock(9, 15, 38);
+        System.out.print("Giá trị Clock A: ");
+        clockA.in();
+
+        // Tạo 1 Clock bất kỳ nhập giá trị cho nó và in ra màn hình
+        Clock clockB = new Clock(0, 0, 0);
+        System.out.println("Nhập giá trị cho Clock B:");
+        clockB.nhap();
+        System.out.print("Giá trị Clock B trước khi làm tròn: ");
+        clockB.in();
+
+        // Làm tròn Clock B và in ra màn hình
+        clockB.lamTron();
+        System.out.print("Giá trị Clock B sau khi làm tròn: ");
+        clockB.in();
+    }
+}
